@@ -233,6 +233,19 @@ function findNode(id) {
 // only), which is dead weight if you came here to read. The filter applies to
 // the work lists, not to the sidebar counts -- those describe the catalogue,
 // and silently restating them under a filter would make the two disagree.
+// A domain whose only sub-domain is the absence bucket has no real second
+// level -- "Other works > uncategorized" says the same thing twice -- so it is
+// rendered as a leaf holding that bucket's works directly. The data keeps the
+// bucket (the shape is uniform); only the rendering collapses it.
+function loneUncategorized(entry) {
+  const kids = entry.children || [];
+  return kids.length === 1 && kids[0].uncategorized ? kids[0] : null;
+}
+
+function effectiveChildren(entry) {
+  return loneUncategorized(entry) ? [] : (entry.children || []);
+}
+
 function textOnlyFiltered(works) {
   return state.textOnly ? works.filter((w) => w.text) : works;
 }
@@ -386,7 +399,7 @@ function renderSidebarNode(entry, parent, depth) {
   // there as "(0 works)" -- under TXT only the sidebar is a map of what you can
   // actually reach, and 3888 of the author axis's entries have no text at all.
   if (state.textOnly && !(entry.stats?.text_count)) return null;
-  const kids = entry.children || [];
+  const kids = effectiveChildren(entry);
   const isExpanded = state.expanded.has(id);
 
   const toggleNode = (expandAll) => {
@@ -416,9 +429,14 @@ function renderSidebarNode(entry, parent, depth) {
           toggleNode(isExpandAllGesture(ev));
         },
       }, isExpanded ? "▾" : "▸")
+    // On the category axis a childless top-level node sits among arrowed
+    // siblings, so it takes the dot like any sub-level leaf and stays aligned
+    // with them. The blank spacer is only for the author axis, where every
+    // row is childless and a column of dots would mark nothing.
     : el("span", {
-        class: "toggleArrow toggleArrowStatic" + (depth ? "" : " toggleArrowLeaf"),
-      }, depth ? "·" : "");
+        class: "toggleArrow toggleArrowStatic"
+          + (depth || state.axis === "category" ? "" : " toggleArrowLeaf"),
+      }, depth || state.axis === "category" ? "·" : "");
   if (kids.length) bindLongPressExpand(toggleArrow, () => toggleNode(true));
 
   const statsText = formatStats(visibleStats(entry.stats));
@@ -579,6 +597,18 @@ function metadataUrl(work) {
 function nodeSourceLinks(entry, parent) {
   return [];
 }
+
+// GRETIL has no search or browse endpoint to link a heading to; the shared
+// grouping code still asks, so these answer "nothing".
+function siteSearchUrl(value, type) {
+  return null;
+}
+
+function categoryBrowseUrl(domain) {
+  return null;
+}
+
+const SOURCE_LINK_TITLES = { search: { category: "", author: "" }, browse: { category: "" } };
 
 function sourceLinkTitle(kind) {
   return "";
@@ -799,13 +829,15 @@ function renderNodeBlock(entry, parent, { isSearch = false, depth = 0 } = {}) {
       + entry.domains.map((d) => translitTextUncached(d)).join(", ")));
   }
 
-  const kids = (entry.children || [])
+  const kids = effectiveChildren(entry)
     .filter((c) => !state.textOnly || c.stats?.text_count);
   if (kids.length && !isSearch) {
     for (const c of kids) block.appendChild(renderNodeBlock(c, entry, { depth: depth + 1 }));
   }
 
-  const own = entry.work_ids ? worksOf(entry) : [];
+  // A collapsed lone bucket lends its works to the parent it collapsed into.
+  const ownEntry = entry.work_ids ? entry : loneUncategorized(entry);
+  const own = ownEntry ? worksOf(ownEntry) : [];
   if (own.length) {
     block.appendChild(renderWorkList(own, id));
   } else if (state.textOnly && (entry.work_ids || []).length) {
@@ -889,7 +921,7 @@ function renderOverview() {
 
   for (const entry of shown) {
     const id = nodeIdFor(entry);
-    const subCount = (entry.children || []).length;
+    const subCount = effectiveChildren(entry).length;
     block.appendChild(el("div", {
       class: "block panelTitle" + (entry.unknown ? " absentValue" : ""),
       style: "cursor:pointer;",

@@ -1,4 +1,4 @@
-.PHONY: inventory inventory-zip count-sizes extract-text
+.PHONY: inventory inventory-zip count-sizes extract-text build changelog serve serve-fulltext
 
 # ============================================================================
 # Everything here is OFFLINE. GRETIL is closed and every copy is on disk under
@@ -27,3 +27,19 @@ count-sizes:
 # does). The body cuts are pipeline/text_measure.py's; rivulet only writes.
 extract-text:
 	python -m pipeline.extract_text $(ARGS)
+
+# inventory + sizes -> docs/data/tree.json (and docs/VERSION).
+build:
+	python -m pipeline.build_tree $(ARGS)
+
+# hist.html + gretil.html -> docs/data/changelog.json; also dates the tree's works.
+changelog:
+	python -m pipeline.build_changelog $(ARGS)
+
+# Serve docs/ on :8005. `serve-fulltext` also serves data/text_extract/ at
+# /text/<work id> for the txt badge -- localhost only, never published.
+serve:
+	python serve_docs.py
+
+serve-fulltext:
+	python serve_docs.py --fulltext

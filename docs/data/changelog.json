@@ -1,0 +1,837 @@
+{
+ "granularity": "month",
+ "source": "GRETIL's own update history (hist.html), joined to the main page's anchors",
+ "periods": [
+  {
+   "date": "2001-11-01",
+   "added": 1,
+   "cumulative_text_count": 1,
+   "cumulative_iast_bytes_total": 167051
+  },
+  {
+   "date": "2001-12-01",
+   "added": 4,
+   "cumulative_text_count": 5,
+   "cumulative_iast_bytes_total": 4896598
+  },
+  {
+   "date": "2002-01-01",
+   "added": 8,
+   "cumulative_text_count": 13,
+   "cumulative_iast_bytes_total": 7999835
+  },
+  {
+   "date": "2002-02-01",
+   "added": 3,
+   "cumulative_text_count": 16,
+   "cumulative_iast_bytes_total": 8537548
+  },
+  {
+   "date": "2002-03-01",
+   "added": 12,
+   "cumulative_text_count": 28,
+   "cumulative_iast_bytes_total": 10995159
+  },
+  {
+   "date": "2002-04-01",
+   "added": 5,
+   "cumulative_text_count": 33,
+   "cumulative_iast_bytes_total": 11283574
+  },
+  {
+   "date": "2002-05-01",
+   "added": 3,
+   "cumulative_text_count": 36,
+   "cumulative_iast_bytes_total": 12241995
+  },
+  {
+   "date": "2002-06-01",
+   "added": 25,
+   "cumulative_text_count": 61,
+   "cumulative_iast_bytes_total": 18358700
+  },
+  {
+   "date": "2002-07-01",
+   "added": 2,
+   "cumulative_text_count": 63,
+   "cumulative_iast_bytes_total": 18483457
+  },
+  {
+   "date": "2002-09-01",
+   "added": 2,
+   "cumulative_text_count": 65,
+   "cumulative_iast_bytes_total": 18537145
+  },
+  {
+   "date": "2002-10-01",
+   "added": 12,
+   "cumulative_text_count": 77,
+   "cumulative_iast_bytes_total": 19510508
+  },
+  {
+   "date": "2002-11-01",
+   "added": 1,
+   "cumulative_text_count": 78,
+   "cumulative_iast_bytes_total": 21110132
+  },
+  {
+   "date": "2002-12-01",
+   "added": 11,
+   "cumulative_text_count": 89,
+   "cumulative_iast_bytes_total": 22076710
+  },
+  {
+   "date": "2003-01-01",
+   "added": 5,
+   "cumulative_text_count": 94,
+   "cumulative_iast_bytes_total": 22985167
+  },
+  {
+   "date": "2003-03-01",
+   "added": 4,
+   "cumulative_text_count": 98,
+   "cumulative_iast_bytes_total": 25043341
+  },
+  {
+   "date": "2003-05-01",
+   "added": 13,
+   "cumulative_text_count": 111,
+   "cumulative_iast_bytes_total": 27214998
+  },
+  {
+   "date": "2003-09-01",
+   "added": 4,
+   "cumulative_text_count": 115,
+   "cumulative_iast_bytes_total": 28218005
+  },
+  {
+   "date": "2003-10-01",
+   "added": 3,
+   "cumulative_text_count": 118,
+   "cumulative_iast_bytes_total": 28228249
+  },
+  {
+   "date": "2003-11-01",
+   "added": 9,
+   "cumulative_text_count": 127,
+   "cumulative_iast_bytes_total": 30624584
+  },
+  {
+   "date": "2003-12-01",
+   "added": 12,
+   "cumulative_text_count": 139,
+   "cumulative_iast_bytes_total": 31102734
+  },
+  {
+   "date": "2004-01-01",
+   "added": 2,
+   "cumulative_text_count": 141,
+   "cumulative_iast_bytes_total": 31501778
+  },
+  {
+   "date": "2004-02-01",
+   "added": 1,
+   "cumulative_text_count": 142,
+   "cumulative_iast_bytes_total": 31506342
+  },
+  {
+   "date": "2004-03-01",
+   "added": 3,
+   "cumulative_text_count": 145,
+   "cumulative_iast_bytes_total": 31735061
+  },
+  {
+   "date": "2004-04-01",
+   "added": 5,
+   "cumulative_text_count": 150,
+   "cumulative_iast_bytes_total": 35393641
+  },
+  {
+   "date": "2004-05-01",
+   "added": 5,
+   "cumulative_text_count": 155,
+   "cumulative_iast_bytes_total": 38782807
+  },
+  {
+   "date": "2004-06-01",
+   "added": 7,
+   "cumulative_text_count": 162,
+   "cumulative_iast_bytes_total": 41441039
+  },
+  {
+   "date": "2004-07-01",
+   "added": 9,
+   "cumulative_text_count": 171,
+   "cumulative_iast_bytes_total": 47663497
+  },
+  {
+   "date": "2004-08-01",
+   "added": 5,
+   "cumulative_text_count": 176,
+   "cumulative_iast_bytes_total": 49276988
+  },
+  {
+   "date": "2004-09-01",
+   "added": 6,
+   "cumulative_text_count": 182,
+   "cumulative_iast_bytes_total": 50783770
+  },
+  {
+   "date": "2004-10-01",
+   "added": 4,
+   "cumulative_text_count": 186,
+   "cumulative_iast_bytes_total": 53665708
+  },
+  {
+   "date": "2004-11-01",
+   "added": 7,
+   "cumulative_text_count": 193,
+   "cumulative_iast_bytes_total": 58607019
+  },
+  {
+   "date": "2004-12-01",
+   "added": 11,
+   "cumulative_text_count": 204,
+   "cumulative_iast_bytes_total": 62785076
+  },
+  {
+   "date": "2005-01-01",
+   "added": 4,
+   "cumulative_text_count": 208,
+   "cumulative_iast_bytes_total": 65361480
+  },
+  {
+   "date": "2005-02-01",
+   "added": 7,
+   "cumulative_text_count": 215,
+   "cumulative_iast_bytes_total": 68198762
+  },
+  {
+   "date": "2005-03-01",
+   "added": 1,
+   "cumulative_text_count": 216,
+   "cumulative_iast_bytes_total": 68225970
+  },
+  {
+   "date": "2005-05-01",
+   "added": 1,
+   "cumulative_text_count": 217,
+   "cumulative_iast_bytes_total": 68688016
+  },
+  {
+   "date": "2005-06-01",
+   "added": 3,
+   "cumulative_text_count": 220,
+   "cumulative_iast_bytes_total": 70558394
+  },
+  {
+   "date": "2005-07-01",
+   "added": 7,
+   "cumulative_text_count": 227,
+   "cumulative_iast_bytes_total": 74739858
+  },
+  {
+   "date": "2005-08-01",
+   "added": 3,
+   "cumulative_text_count": 230,
+   "cumulative_iast_bytes_total": 75432914
+  },
+  {
+   "date": "2005-10-01",
+   "added": 2,
+   "cumulative_text_count": 232,
+   "cumulative_iast_bytes_total": 75555453
+  },
+  {
+   "date": "2005-11-01",
+   "added": 2,
+   "cumulative_text_count": 234,
+   "cumulative_iast_bytes_total": 76540951
+  },
+  {
+   "date": "2005-12-01",
+   "added": 3,
+   "cumulative_text_count": 237,
+   "cumulative_iast_bytes_total": 76839447
+  },
+  {
+   "date": "2006-02-01",
+   "added": 2,
+   "cumulative_text_count": 239,
+   "cumulative_iast_bytes_total": 77279426
+  },
+  {
+   "date": "2006-03-01",
+   "added": 21,
+   "cumulative_text_count": 260,
+   "cumulative_iast_bytes_total": 78610654
+  },
+  {
+   "date": "2006-04-01",
+   "added": 1,
+   "cumulative_text_count": 261,
+   "cumulative_iast_bytes_total": 79210767
+  },
+  {
+   "date": "2006-05-01",
+   "added": 9,
+   "cumulative_text_count": 270,
+   "cumulative_iast_bytes_total": 81527165
+  },
+  {
+   "date": "2006-06-01",
+   "added": 39,
+   "cumulative_text_count": 309,
+   "cumulative_iast_bytes_total": 84865359
+  },
+  {
+   "date": "2006-07-01",
+   "added": 6,
+   "cumulative_text_count": 315,
+   "cumulative_iast_bytes_total": 87092052
+  },
+  {
+   "date": "2006-09-01",
+   "added": 5,
+   "cumulative_text_count": 320,
+   "cumulative_iast_bytes_total": 87404557
+  },
+  {
+   "date": "2006-11-01",
+   "added": 3,
+   "cumulative_text_count": 323,
+   "cumulative_iast_bytes_total": 88462100
+  },
+  {
+   "date": "2006-12-01",
+   "added": 15,
+   "cumulative_text_count": 338,
+   "cumulative_iast_bytes_total": 88613503
+  },
+  {
+   "date": "2007-01-01",
+   "added": 1,
+   "cumulative_text_count": 339,
+   "cumulative_iast_bytes_total": 91185490
+  },
+  {
+   "date": "2007-02-01",
+   "added": 1,
+   "cumulative_text_count": 340,
+   "cumulative_iast_bytes_total": 91745412
+  },
+  {
+   "date": "2007-03-01",
+   "added": 13,
+   "cumulative_text_count": 353,
+   "cumulative_iast_bytes_total": 97525022
+  },
+  {
+   "date": "2007-04-01",
+   "added": 7,
+   "cumulative_text_count": 360,
+   "cumulative_iast_bytes_total": 103256017
+  },
+  {
+   "date": "2007-06-01",
+   "added": 39,
+   "cumulative_text_count": 399,
+   "cumulative_iast_bytes_total": 107037139
+  },
+  {
+   "date": "2007-07-01",
+   "added": 4,
+   "cumulative_text_count": 403,
+   "cumulative_iast_bytes_total": 108508554
+  },
+  {
+   "date": "2007-09-01",
+   "added": 29,
+   "cumulative_text_count": 432,
+   "cumulative_iast_bytes_total": 111635404
+  },
+  {
+   "date": "2007-10-01",
+   "added": 2,
+   "cumulative_text_count": 434,
+   "cumulative_iast_bytes_total": 111881316
+  },
+  {
+   "date": "2007-11-01",
+   "added": 5,
+   "cumulative_text_count": 439,
+   "cumulative_iast_bytes_total": 114624270
+  },
+  {
+   "date": "2007-12-01",
+   "added": 2,
+   "cumulative_text_count": 441,
+   "cumulative_iast_bytes_total": 114736209
+  },
+  {
+   "date": "2008-01-01",
+   "added": 8,
+   "cumulative_text_count": 449,
+   "cumulative_iast_bytes_total": 116240259
+  },
+  {
+   "date": "2008-02-01",
+   "added": 5,
+   "cumulative_text_count": 454,
+   "cumulative_iast_bytes_total": 121528891
+  },
+  {
+   "date": "2008-03-01",
+   "added": 1,
+   "cumulative_text_count": 455,
+   "cumulative_iast_bytes_total": 121780728
+  },
+  {
+   "date": "2008-09-01",
+   "added": 3,
+   "cumulative_text_count": 458,
+   "cumulative_iast_bytes_total": 123071411
+  },
+  {
+   "date": "2008-10-01",
+   "added": 3,
+   "cumulative_text_count": 461,
+   "cumulative_iast_bytes_total": 123310439
+  },
+  {
+   "date": "2008-11-01",
+   "added": 6,
+   "cumulative_text_count": 467,
+   "cumulative_iast_bytes_total": 124915878
+  },
+  {
+   "date": "2008-12-01",
+   "added": 13,
+   "cumulative_text_count": 480,
+   "cumulative_iast_bytes_total": 126668208
+  },
+  {
+   "date": "2009-01-01",
+   "added": 1,
+   "cumulative_text_count": 481,
+   "cumulative_iast_bytes_total": 126902211
+  },
+  {
+   "date": "2009-02-01",
+   "added": 2,
+   "cumulative_text_count": 483,
+   "cumulative_iast_bytes_total": 126996276
+  },
+  {
+   "date": "2009-03-01",
+   "added": 8,
+   "cumulative_text_count": 491,
+   "cumulative_iast_bytes_total": 127896196
+  },
+  {
+   "date": "2009-04-01",
+   "added": 6,
+   "cumulative_text_count": 497,
+   "cumulative_iast_bytes_total": 128162565
+  },
+  {
+   "date": "2009-05-01",
+   "added": 3,
+   "cumulative_text_count": 500,
+   "cumulative_iast_bytes_total": 129125583
+  },
+  {
+   "date": "2009-06-01",
+   "added": 4,
+   "cumulative_text_count": 504,
+   "cumulative_iast_bytes_total": 132262386
+  },
+  {
+   "date": "2009-08-01",
+   "added": 4,
+   "cumulative_text_count": 508,
+   "cumulative_iast_bytes_total": 132897370
+  },
+  {
+   "date": "2009-09-01",
+   "added": 5,
+   "cumulative_text_count": 513,
+   "cumulative_iast_bytes_total": 133075246
+  },
+  {
+   "date": "2009-10-01",
+   "added": 1,
+   "cumulative_text_count": 514,
+   "cumulative_iast_bytes_total": 133387980
+  },
+  {
+   "date": "2009-11-01",
+   "added": 1,
+   "cumulative_text_count": 515,
+   "cumulative_iast_bytes_total": 133475558
+  },
+  {
+   "date": "2009-12-01",
+   "added": 1,
+   "cumulative_text_count": 516,
+   "cumulative_iast_bytes_total": 133730847
+  },
+  {
+   "date": "2010-03-01",
+   "added": 16,
+   "cumulative_text_count": 532,
+   "cumulative_iast_bytes_total": 136066569
+  },
+  {
+   "date": "2010-04-01",
+   "added": 11,
+   "cumulative_text_count": 543,
+   "cumulative_iast_bytes_total": 139303818
+  },
+  {
+   "date": "2010-07-01",
+   "added": 12,
+   "cumulative_text_count": 555,
+   "cumulative_iast_bytes_total": 140412996
+  },
+  {
+   "date": "2010-09-01",
+   "added": 9,
+   "cumulative_text_count": 564,
+   "cumulative_iast_bytes_total": 143464233
+  },
+  {
+   "date": "2010-10-01",
+   "added": 1,
+   "cumulative_text_count": 565,
+   "cumulative_iast_bytes_total": 143758511
+  },
+  {
+   "date": "2010-11-01",
+   "added": 3,
+   "cumulative_text_count": 568,
+   "cumulative_iast_bytes_total": 144103533
+  },
+  {
+   "date": "2011-01-01",
+   "added": 7,
+   "cumulative_text_count": 575,
+   "cumulative_iast_bytes_total": 144674925
+  },
+  {
+   "date": "2011-02-01",
+   "added": 3,
+   "cumulative_text_count": 578,
+   "cumulative_iast_bytes_total": 144847769
+  },
+  {
+   "date": "2011-06-01",
+   "added": 1,
+   "cumulative_text_count": 579,
+   "cumulative_iast_bytes_total": 145370011
+  },
+  {
+   "date": "2011-08-01",
+   "added": 4,
+   "cumulative_text_count": 583,
+   "cumulative_iast_bytes_total": 145437895
+  },
+  {
+   "date": "2011-09-01",
+   "added": 2,
+   "cumulative_text_count": 585,
+   "cumulative_iast_bytes_total": 145940665
+  },
+  {
+   "date": "2011-10-01",
+   "added": 2,
+   "cumulative_text_count": 587,
+   "cumulative_iast_bytes_total": 147449818
+  },
+  {
+   "date": "2011-11-01",
+   "added": 2,
+   "cumulative_text_count": 589,
+   "cumulative_iast_bytes_total": 147530593
+  },
+  {
+   "date": "2012-08-01",
+   "added": 1,
+   "cumulative_text_count": 590,
+   "cumulative_iast_bytes_total": 147542011
+  },
+  {
+   "date": "2012-09-01",
+   "added": 7,
+   "cumulative_text_count": 597,
+   "cumulative_iast_bytes_total": 147788879
+  },
+  {
+   "date": "2012-10-01",
+   "added": 2,
+   "cumulative_text_count": 599,
+   "cumulative_iast_bytes_total": 148277185
+  },
+  {
+   "date": "2012-11-01",
+   "added": 4,
+   "cumulative_text_count": 603,
+   "cumulative_iast_bytes_total": 148459588
+  },
+  {
+   "date": "2013-01-01",
+   "added": 5,
+   "cumulative_text_count": 608,
+   "cumulative_iast_bytes_total": 149182569
+  },
+  {
+   "date": "2013-02-01",
+   "added": 2,
+   "cumulative_text_count": 610,
+   "cumulative_iast_bytes_total": 149331820
+  },
+  {
+   "date": "2013-03-01",
+   "added": 6,
+   "cumulative_text_count": 616,
+   "cumulative_iast_bytes_total": 149500295
+  },
+  {
+   "date": "2013-04-01",
+   "added": 11,
+   "cumulative_text_count": 627,
+   "cumulative_iast_bytes_total": 150120402
+  },
+  {
+   "date": "2013-06-01",
+   "added": 1,
+   "cumulative_text_count": 628,
+   "cumulative_iast_bytes_total": 150148518
+  },
+  {
+   "date": "2013-08-01",
+   "added": 1,
+   "cumulative_text_count": 629,
+   "cumulative_iast_bytes_total": 150595772
+  },
+  {
+   "date": "2013-09-01",
+   "added": 1,
+   "cumulative_text_count": 630,
+   "cumulative_iast_bytes_total": 150687102
+  },
+  {
+   "date": "2013-10-01",
+   "added": 2,
+   "cumulative_text_count": 632,
+   "cumulative_iast_bytes_total": 150722162
+  },
+  {
+   "date": "2013-11-01",
+   "added": 3,
+   "cumulative_text_count": 635,
+   "cumulative_iast_bytes_total": 150883444
+  },
+  {
+   "date": "2014-02-01",
+   "added": 1,
+   "cumulative_text_count": 636,
+   "cumulative_iast_bytes_total": 150908860
+  },
+  {
+   "date": "2014-03-01",
+   "added": 4,
+   "cumulative_text_count": 640,
+   "cumulative_iast_bytes_total": 151056255
+  },
+  {
+   "date": "2014-04-01",
+   "added": 2,
+   "cumulative_text_count": 642,
+   "cumulative_iast_bytes_total": 151122505
+  },
+  {
+   "date": "2014-05-01",
+   "added": 2,
+   "cumulative_text_count": 644,
+   "cumulative_iast_bytes_total": 151600497
+  },
+  {
+   "date": "2014-08-01",
+   "added": 1,
+   "cumulative_text_count": 645,
+   "cumulative_iast_bytes_total": 151793601
+  },
+  {
+   "date": "2014-09-01",
+   "added": 2,
+   "cumulative_text_count": 647,
+   "cumulative_iast_bytes_total": 152016962
+  },
+  {
+   "date": "2014-11-01",
+   "added": 1,
+   "cumulative_text_count": 648,
+   "cumulative_iast_bytes_total": 152028603
+  },
+  {
+   "date": "2015-01-01",
+   "added": 3,
+   "cumulative_text_count": 651,
+   "cumulative_iast_bytes_total": 152348905
+  },
+  {
+   "date": "2015-03-01",
+   "added": 2,
+   "cumulative_text_count": 653,
+   "cumulative_iast_bytes_total": 152638458
+  },
+  {
+   "date": "2015-05-01",
+   "added": 1,
+   "cumulative_text_count": 654,
+   "cumulative_iast_bytes_total": 152670466
+  },
+  {
+   "date": "2015-07-01",
+   "added": 2,
+   "cumulative_text_count": 656,
+   "cumulative_iast_bytes_total": 152695848
+  },
+  {
+   "date": "2015-09-01",
+   "added": 3,
+   "cumulative_text_count": 659,
+   "cumulative_iast_bytes_total": 152987187
+  },
+  {
+   "date": "2016-09-01",
+   "added": 1,
+   "cumulative_text_count": 660,
+   "cumulative_iast_bytes_total": 158979629
+  },
+  {
+   "date": "2016-11-01",
+   "added": 2,
+   "cumulative_text_count": 662,
+   "cumulative_iast_bytes_total": 159047071
+  },
+  {
+   "date": "2016-12-01",
+   "added": 1,
+   "cumulative_text_count": 663,
+   "cumulative_iast_bytes_total": 160140350
+  },
+  {
+   "date": "2017-02-01",
+   "added": 1,
+   "cumulative_text_count": 664,
+   "cumulative_iast_bytes_total": 160175459
+  },
+  {
+   "date": "2017-03-01",
+   "added": 2,
+   "cumulative_text_count": 666,
+   "cumulative_iast_bytes_total": 160254398
+  },
+  {
+   "date": "2017-05-01",
+   "added": 2,
+   "cumulative_text_count": 668,
+   "cumulative_iast_bytes_total": 160512044
+  },
+  {
+   "date": "2017-07-01",
+   "added": 2,
+   "cumulative_text_count": 670,
+   "cumulative_iast_bytes_total": 160521069
+  },
+  {
+   "date": "2017-09-01",
+   "added": 2,
+   "cumulative_text_count": 672,
+   "cumulative_iast_bytes_total": 160839169
+  },
+  {
+   "date": "2017-10-01",
+   "added": 1,
+   "cumulative_text_count": 673,
+   "cumulative_iast_bytes_total": 160948496
+  },
+  {
+   "date": "2017-11-01",
+   "added": 3,
+   "cumulative_text_count": 676,
+   "cumulative_iast_bytes_total": 161023991
+  },
+  {
+   "date": "2017-12-01",
+   "added": 1,
+   "cumulative_text_count": 677,
+   "cumulative_iast_bytes_total": 161120924
+  },
+  {
+   "date": "2018-05-01",
+   "added": 1,
+   "cumulative_text_count": 678,
+   "cumulative_iast_bytes_total": 161126958
+  },
+  {
+   "date": "2018-06-01",
+   "added": 4,
+   "cumulative_text_count": 682,
+   "cumulative_iast_bytes_total": 161280038
+  },
+  {
+   "date": "2018-07-01",
+   "added": 3,
+   "cumulative_text_count": 685,
+   "cumulative_iast_bytes_total": 165628977
+  },
+  {
+   "date": "2018-09-01",
+   "added": 3,
+   "cumulative_text_count": 688,
+   "cumulative_iast_bytes_total": 165731869
+  },
+  {
+   "date": "2019-05-01",
+   "added": 3,
+   "cumulative_text_count": 691,
+   "cumulative_iast_bytes_total": 165770316
+  },
+  {
+   "date": "2019-06-01",
+   "added": 2,
+   "cumulative_text_count": 693,
+   "cumulative_iast_bytes_total": 165827675
+  },
+  {
+   "date": "2019-08-01",
+   "added": 3,
+   "cumulative_text_count": 696,
+   "cumulative_iast_bytes_total": 168796992
+  },
+  {
+   "date": "2019-10-01",
+   "added": 2,
+   "cumulative_text_count": 698,
+   "cumulative_iast_bytes_total": 168831072
+  },
+  {
+   "date": "2020-01-01",
+   "added": 4,
+   "cumulative_text_count": 702,
+   "cumulative_iast_bytes_total": 169025728
+  },
+  {
+   "date": "2020-06-01",
+   "added": 5,
+   "cumulative_text_count": 707,
+   "cumulative_iast_bytes_total": 171709309
+  }
+ ],
+ "undated_works": 416,
+ "updates_read": 498,
+ "anchors_on_main_page": 1099
+}

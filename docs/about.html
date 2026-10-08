@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — GRETIL Atlas</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script>
+    (function () {
+      var saved = localStorage.getItem("theme");
+      var theme = saved || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <style>
+    .about { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1rem 4rem; line-height: 1.55; }
+    .about h2 { margin-top: 2rem; }
+    .about table { border-collapse: collapse; margin: 1rem 0; }
+    .about td, .about th { padding: 0.25rem 0.8rem 0.25rem 0; text-align: left; vertical-align: top; }
+    .about td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+    .about .muted { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <a href="./index.html" class="brand-title brand-title-link" style="text-decoration:none">GRETIL Atlas</a>
+      <span class="topbar-link" style="color: var(--muted)">About</span>
+    </div>
+    <nav class="topnav">
+      <button id="themeToggle" class="theme-toggle" type="button" title="Toggle light/dark theme"></button>
+    </nav>
+  </header>
+
+  <main class="about">
+    <h1>About this Atlas</h1>
+    <p>A browsable index of the Sanskrit collection of <strong>GRETIL</strong>, the Göttingen Register of
+      Electronic Texts in Indian Languages (2001–2020), built from a scrape of the site shortly before its
+      closure and archiving to TextGrid. This Atlas hosts no text; every work links to the files in
+      <a href="https://tylergneill.github.io/gretil-mirror/gretil.html" target="_blank" rel="noopener">the author's mirror</a>.</p>
+
+    <h2>At a glance</h2>
+    <table>
+      <tr><td>Works</td><td><span data-stat="count"></span></td></tr>
+      <tr><td>…converted to TEI by GRETIL</td><td><span data-stat="tei_count"></span></td></tr>
+      <tr><td>…legacy HTML only</td><td><span data-stat="legacy_only_count"></span></td></tr>
+      <tr><td>Legacy Sanskrit HTML files behind them</td><td><span data-stat="legacy_file_count"></span></td></tr>
+      <tr><td>IAST bytes, all works</td><td><span data-stat="transliterated_bytes" data-unit="mb"></span> MB</td></tr>
+      <tr><td>Last update to the collection</td><td><span data-stat="last_changed"></span></td></tr>
+    </table>
+
+    <h2>What a work is here</h2>
+    <p>GRETIL kept its Sanskrit texts in two layers: a categorical tree of legacy HTML files, and a curated
+      TEI layer converted from about half of them between 2017 and 2020. This Atlas counts <em>one work per
+      TEI file</em>, and one per legacy text that was never converted, with a text's several legacy renderings
+      (analytic, plain, index) folded into one. Works are placed in GRETIL's own categories, taken from the
+      directory their legacy file sat in. The choice of unit is provisional; the alternative under study is the
+      site's own main-page entry.</p>
+
+    <h2>Sizes</h2>
+    <p>GRETIL is IAST throughout, so the byte figure is simply the body of each text with GRETIL's header,
+      banner and character table removed. A TEI work is measured from its plaintext transformation; a
+      legacy-only work from its largest rendering. Where a text exists in both layers the TEI body runs about
+      a tenth larger than the legacy one, from structure labels and verse ids.</p>
+
+    <h2>Growth</h2>
+    <p>GRETIL published a dated update history, 498 entries from 2001 to 2020, each naming the texts it added.
+      The growth series here is measured from that record: <span data-stat="changelog_months"></span> months,
+      <span data-stat="changelog_first"></span> to <span data-stat="changelog_last"></span>.
+      <span data-stat="undated_works"></span> works could not be matched to an update, the Mahābhārata's
+      parvans among them, and are left out of the series rather than dated by guess.</p>
+
+    <h2>Caveats</h2>
+    <ul>
+      <li>Three official versions of GRETIL exist and disagree in detail; this Atlas follows the live site's
+        last structure, which fixed thirteen misfilings the downloadable zip still carries.</li>
+      <li>The TextGrid archive holds some sixty TEI files more than the scrape; they are not here yet.</li>
+      <li>Pali, Prakrit, Dravidian and the other sections are inventoried but not counted.</li>
+    </ul>
+
+    <p class="muted">Source and pipeline: <a href="https://github.com/tylergneill/gretil-atlas" target="_blank" rel="noopener">github.com/tylergneill/gretil-atlas</a>.
+      Part of <a href="https://sagarasangama.info" target="_blank" rel="noopener">Sāgarasaṅgama</a>.
+      Metadata CC BY-NC-SA 4.0, as GRETIL's own TEI; the texts belong to GRETIL and its contributors.</p>
+  </main>
+
+  <script type="module" src="./about.js"></script>
+</body>
+</html>

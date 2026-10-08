@@ -1,0 +1,31 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Unit test / coverage
+.pytest_cache/
+.coverage
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Everything the pipeline writes: inventories, size measurements, intermediate
+# JSONL. Regenerable from the local GRETIL checkouts in seconds. Leading slash
+# anchors this to the repo root -- a bare `data/` would also match docs/data/,
+# which is published and must stay tracked.
+/data/
+
+# A git bundle of this repo's history plus a plain-text digest, kept locally
+# as a backup. Large, redundant with the repo itself, and never published.
+/notes/githistory/

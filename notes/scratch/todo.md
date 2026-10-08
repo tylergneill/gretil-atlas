@@ -8,13 +8,18 @@ No network anywhere in this plan. Sources are read-only checkouts under
 
 ## Phase 0 — decide the unit
 
-- [ ] **What is a text?** Legacy HTM file (1,326), work stem with the
-      analytic/plain/index renderings folded (≈1,087 by heuristic), or TEI
-      file (784)? Proposal: a **work** is a main-page `<li>` (the site's own
-      catalogue entry, with its anchor id), and files are its renderings —
-      which makes the main page the catalogue and the file tree the check.
-      Verify that every legacy HTM and every TEI file is reachable from a
-      main-page entry; the ones that are not are the real findings.
+- [ ] **What is a text?** Decided provisionally 2026-10-07, leaning TEI as
+      Tyler prefers (the TEI layer was itself a selection; "work" is too
+      coarse because editions must stay distinct): **one work per TEI file,
+      plus one per legacy-only text** with its renderings folded — 782 + 341
+      = 1,123, what `build_tree` publishes. Still to compare against option
+      4, the main page's own entries: 1,099 `<li>` anchors, of which 769 link
+      a TEI file, 330 link none (TITUS/Sansknet-only or external), and few
+      link legacy HTM directly. The join through those anchors dated 707 of
+      the 1,123 works; the 416 undated are mostly legacy-only (all Mahābhārata
+      parvans) plus TEI files whose anchor names no file. Measure the overlap
+      both ways and decide whether the main-page entry should replace or
+      merely annotate the TEI unit.
 - [ ] **Sanskrit first, and what "Sanskrit" means.** `1_sanskr/` plus `sa_`
       TEI; decide whether `7_fromindonesia` and the Prakrit-in-Sanskrit
       commentaries count. Other languages stay inventoried, not counted.

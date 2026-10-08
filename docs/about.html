@@ -12,77 +12,405 @@
       document.documentElement.setAttribute("data-theme", theme);
     })();
   </script>
-  <style>
-    .about { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1rem 4rem; line-height: 1.55; }
-    .about h2 { margin-top: 2rem; }
-    .about table { border-collapse: collapse; margin: 1rem 0; }
-    .about td, .about th { padding: 0.25rem 0.8rem 0.25rem 0; text-align: left; vertical-align: top; }
-    .about td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
-    .about .muted { color: var(--muted); }
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/@indic-transliteration/sanscript@1.3.3/sanscript.min.js"></script>
 </head>
 <body>
-  <header class="topbar">
+  <header class="topbar about-topbar">
     <div class="brand">
-      <a href="./index.html" class="brand-title brand-title-link" style="text-decoration:none">GRETIL Atlas</a>
-      <span class="topbar-link" style="color: var(--muted)">About</span>
+      <a href="./index.html" class="brand-title brand-title-link" title="Back to All">GRETIL Atlas</a>
     </div>
+
     <nav class="topnav">
+      <label class="navlabel" for="schemeSelect">अ→a</label>
+      <select id="schemeSelect">
+        <option value="devanagari">देवनागरी</option>
+        <option value="iast" selected>IAST</option>
+        <option value="itrans">ITRANS</option>
+        <option value="hk">HK</option>
+        <option value="iso">ISO 15919</option>
+        <option value="slp1">SLP1</option>
+      </select>
       <button id="themeToggle" class="theme-toggle" type="button" title="Toggle light/dark theme"></button>
     </nav>
+
+    <a href="./index.html" class="topbar-link about-back-link">← Back to tree</a>
   </header>
 
-  <main class="about">
-    <h1>About this Atlas</h1>
-    <p>A browsable index of the Sanskrit collection of <strong>GRETIL</strong>, the Göttingen Register of
-      Electronic Texts in Indian Languages (2001–2020), built from a scrape of the site shortly before its
-      closure and archiving to TextGrid. This Atlas hosts no text; every work links to the files in
-      <a href="https://tylergneill.github.io/gretil-mirror/gretil.html" target="_blank" rel="noopener">the author's mirror</a>.</p>
+  <main class="mainpane" style="height: calc(100% - 48px); display:flex; justify-content:center;">
+    <section class="content" style="width:100%; max-width:900px;">
+      <div class="block">
+        <h2 id="about" style="margin-top:0;">About</h2>
+        <p>
+          <a href="https://gretil.sub.uni-goettingen.de" target="_blank" rel="noopener">GRETIL</a>,
+          the Göttingen Register of Electronic Texts in Indian Languages,
+          is a collection of machine-readable Indic texts contributed by many hands
+          and published by the Göttingen State and University Library from 2001 to 2020.
+          It was declared closed in July 2025 and archived to TextGrid.
+        </p>
+        <p>
+          This unofficial “atlas” interface — not affiliated in any way —
+          offers a better way to explore the contents of its Sanskrit section.
+          It is an "atlas" in the sense that it not only charts the navigable waters —
+          with more transparent browsing by category and author —
+          but also plumbs their depths —
+          with visibility into sizes, counts, and changes over time
+          that the source collection doesn't surface on its own.
+          It is not a mirror, as it hosts no text of its own;
+          instead, every entry links to the files in
+          <a href="https://tylergneill.github.io/gretil-mirror/gretil.html" target="_blank" rel="noopener">a separate mirror of the site</a>,
+          scraped in November 2025.
+        </p>
+        <p>
+          For more perspective on this and sibling Atlas projects, see <a href="https://sagarasangama.info/" id="parentLink">Sāgarasaṅgama</a>.
+        </p>
+        <p>
+          code: <span id="appVersion"></span>, <a href="https://github.com/tylergneill/gretil-atlas" target="_blank" rel="noopener">on GitHub</a>
+        </p>
+        <p>
+          <span id="contentDate"></span>
+        </p>
+        <p>
+          <span id="pipelineRun"></span>
+        </p>
+      </div>
 
-    <h2>At a glance</h2>
-    <table>
-      <tr><td>Works</td><td><span data-stat="count"></span></td></tr>
-      <tr><td>…converted to TEI by GRETIL</td><td><span data-stat="tei_count"></span></td></tr>
-      <tr><td>…legacy HTML only</td><td><span data-stat="legacy_only_count"></span></td></tr>
-      <tr><td>Legacy Sanskrit HTML files behind them</td><td><span data-stat="legacy_file_count"></span></td></tr>
-      <tr><td>IAST bytes, all works</td><td><span data-stat="transliterated_bytes" data-unit="mb"></span> MB</td></tr>
-      <tr><td>Last update to the collection</td><td><span data-stat="last_changed"></span></td></tr>
-    </table>
+      <details class="block collapsible">
+        <summary><h2 id="practical-intro">Practical Intro to GRETIL Structure</h2></summary>
 
-    <h2>What a work is here</h2>
-    <p>GRETIL kept its Sanskrit texts in two layers: a categorical tree of legacy HTML files, and a curated
-      TEI layer converted from about half of them between 2017 and 2020. This Atlas counts <em>one work per
-      TEI file</em>, and one per legacy text that was never converted, with a text's several legacy renderings
-      (analytic, plain, index) folded into one. Works are placed in GRETIL's own categories, taken from the
-      directory their legacy file sat in. The choice of unit is provisional; the alternative under study is the
-      site's own main-page entry.</p>
+        <h3 id="two-layers">Two Overlapping Layers: Legacy HTML and TEI</h3>
+        <p>
+          GRETIL kept its Sanskrit texts in two layers.
+          The older one is a tree of <strong><span data-stat="legacy_file_count"></span> legacy HTML files</strong>,
+          sorted into category folders.
+          The newer one is a flat set of <strong><span data-stat="tei_count"></span> TEI XML files</strong>,
+          converted from the legacy files between 2017 and 2020,
+          each published with an HTML and a plaintext transformation beside it.
+        </p>
+        <p>
+          Neither layer contains the other.
+          The eighteen parvans of the <span class="sa-cap">महाभारत</span> and the <span class="sa-cap">शतपथब्राह्मण</span>, among much else, were never converted,
+          and a few dozen TEI files have no legacy counterpart at all.
+        </p>
 
-    <h2>Sizes</h2>
-    <p>GRETIL is IAST throughout, so the byte figure is simply the body of each text with GRETIL's header,
-      banner and character table removed. A TEI work is measured from its plaintext transformation; a
-      legacy-only work from its largest rendering. Where a text exists in both layers the TEI body runs about
-      a tenth larger than the legacy one, from structure labels and verse ids.</p>
+        <figure class="venn-figure">
+          <!-- Every number below carries a data-stat tag and is filled by about.js
+               from tree.json; edit the tag, not the digits. -->
+          <svg viewBox="0 -16 620 216" role="img" aria-label="Works by layer: legacy HTML only, both layers, TEI only">
 
-    <h2>Growth</h2>
-    <p>GRETIL published a dated update history, 498 entries from 2001 to 2020, each naming the texts it added.
-      The growth series here is measured from that record: <span data-stat="changelog_months"></span> months,
-      <span data-stat="changelog_first"></span> to <span data-stat="changelog_last"></span>.
-      <span data-stat="undated_works"></span> works could not be matched to an update, the Mahābhārata's
-      parvans among them, and are left out of the series rather than dated by guess.</p>
+            <text x="60" y="6" class="venn-label">Legacy HTML</text>
+            <text x="560" y="6" class="venn-label">TEI</text>
 
-    <h2>Caveats</h2>
-    <ul>
-      <li>Three official versions of GRETIL exist and disagree in detail; this Atlas follows the live site's
-        last structure, which fixed thirteen misfilings the downloadable zip still carries.</li>
-      <li>The TextGrid archive holds some sixty TEI files more than the scrape; they are not here yet.</li>
-      <li>Pali, Prakrit, Dravidian and the other sections are inventoried but not counted.</li>
-    </ul>
+            <circle cx="270" cy="100" r="88" class="venn-circle venn-pdf" />
+            <circle cx="350" cy="100" r="84" class="venn-circle venn-uni" />
 
-    <p class="muted">Source and pipeline: <a href="https://github.com/tylergneill/gretil-atlas" target="_blank" rel="noopener">github.com/tylergneill/gretil-atlas</a>.
-      Part of <a href="https://sagarasangama.info" target="_blank" rel="noopener">Sāgarasaṅgama</a>.
-      Metadata CC BY-NC-SA 4.0, as GRETIL's own TEI; the texts belong to GRETIL and its contributors.</p>
+            <!-- Leaders tying the outboard counts to the region they describe. -->
+            <line x1="96" y1="90" x2="215" y2="90" class="venn-leader" />
+            <line x1="524" y1="90" x2="400" y2="90" class="venn-leader" />
+
+            <text x="60" y="95" class="venn-count" data-stat="legacy_only_count"></text>
+            <text x="60" y="112" class="venn-cap">legacy only</text>
+            <text x="310" y="95" class="venn-count venn-both" data-stat="tei_with_legacy"></text>
+            <text x="310" y="112" class="venn-cap venn-both">both</text>
+            <text x="560" y="95" class="venn-count" data-stat="tei_without_legacy"></text>
+            <text x="560" y="112" class="venn-cap">TEI only</text>
+          </svg>
+        </figure>
+
+        <h3 id="filenames">Filenames and Renderings</h3>
+        <p>
+          The two layers name their files very differently.
+          Legacy filenames are eight cryptic characters;
+          TEI filenames spell out author and title in Harvard-Kyoto.
+          The same <span class="sa-cap">ऐतरेयोपनिषद्</span> with commentary is
+          <code>aitupsbu.htm</code> in one layer and
+          <code>sa_aitareyopaniSad-comm.xml</code> in the other.
+        </p>
+        <p>
+          A legacy text may also exist in several <em>renderings</em>,
+          told apart by the letter before the final <code>u</code>:
+          the <span class="sa-cap">अरण्यकाण्ड</span> of the <span class="sa-cap">रामायण</span> is
+          <code>ram_03_u.htm</code>, <code>ram_03au.htm</code> (analytic)
+          and <code>ram_03pu.htm</code> (plain).
+          Others add an index (<code>i</code>).
+          So a count of legacy files overstates the number of texts.
+        </p>
+
+        <h3 id="categories">Categories</h3>
+        <p>
+          The legacy tree is the only categorisation GRETIL has.
+          Its <span data-stat="categories"></span> top-level folders —
+          Veda, Epics, Purāṇa, Religious literature, Poetry, Śāstra, and a small one for texts from Indonesia —
+          divide into <span data-stat="subcategories"></span> finer ones,
+          some two levels down (Śāstra › Philosophy › Mīmāṃsā).
+          Every legacy file sits in exactly one folder.
+          The TEI layer is flat and carries no category of its own.
+        </p>
+
+        <h3 id="metadata">Metadata</h3>
+        <p>
+          A legacy file has a <code>&lt;title&gt;</code>,
+          typically <code>Author: Title</code> without diacritics,
+          and a free prose header naming the edition and the people who input the text.
+          There are no dates and no structured fields.
+        </p>
+        <p>
+          A TEI file has a proper header: title and author with diacritics,
+          the roles of those who input and converted it, the source edition,
+          and the legacy header carried over verbatim.
+          Its one date is the date of TEI publication —
+          <span data-stat="tei_date_2020"></span> of the <span data-stat="tei_count"></span> say 2020
+          and the other <span data-stat="tei_date_2019"></span> say 2019 —
+          which says nothing about when the text joined the collection.
+        </p>
+        <p>
+          <span data-stat="no_author"></span> works (<span data-stat="no_author_pct"></span>%)
+          name no author in either layer; most are anonymous or compiled works.
+        </p>
+
+        <h3 id="main-page-and-history">The Main Page and the Update History</h3>
+        <p>
+          Two pages tie the layers together.
+          The <a href="https://tylergneill.github.io/gretil-mirror/gretil.html" target="_blank" rel="noopener">main page</a>
+          is one long outline by category with an entry per text,
+          linking whichever of its files exist.
+          The history page lists <span data-stat="updates_read"></span> numbered, dated updates
+          from November 2001 to September 2020,
+          each naming the texts it added, revised or converted
+          by linking their entries on the main page.
+        </p>
+
+        <h3 id="versions">Three Official Versions</h3>
+        <p>
+          GRETIL exists in three official forms that disagree in detail:
+          the downloadable zip of all Sanskrit texts,
+          the file structure of the live site,
+          and the TextGrid archive.
+          The zip is the copy most users have and the least current:
+          it still carries thirteen misfilings which the live site later corrected.
+          The TextGrid archive holds some sixty TEI files more than the live site did.
+        </p>
+
+        <h3 id="language">Sanskrit vs. Other Languages</h3>
+        <p>
+          GRETIL also has sections for Pali, Prakrit, New Indo-Aryan and Dravidian languages.
+          This Atlas covers the Sanskrit section only.
+        </p>
+      </details>
+
+      <details class="block collapsible">
+        <summary><h2 id="obtaining-and-representing">Obtaining and Representing GRETIL Data</h2></summary>
+
+        <h3 id="no-scraping">No Scraping</h3>
+        <p>
+          Unlike its sibling Atlases, this one fetches nothing.
+          The collection is closed, and the Atlas is built offline, in seconds,
+          from copies already on disk:
+          a scrape of the live site from November 2025 as the primary source,
+          with the downloadable zip and an independent mirror as cross-checks.
+          Where the versions disagree about where a text is filed, the live site's placement is used.
+          The TextGrid archive's additional TEI files are not included yet.
+        </p>
+
+        <h3 id="what-a-work-is">What Counts as a Work</h3>
+        <p>
+          The Atlas counts <strong>one work per TEI file,
+          plus one per legacy text that was never converted</strong>,
+          with a legacy text's several renderings folded into one:
+          <span data-stat="tei_count"></span> + <span data-stat="legacy_only_count"></span>
+          = <strong><span data-stat="count"></span></strong>.
+          The <span data-stat="legacy_only_count"></span> legacy-only works
+          stand for <span data-stat="legacy_only_files"></span> files;
+          <span data-stat="legacy_multi_rendering"></span> of them have more than one rendering.
+        </p>
+        <p>
+          <strong>This unit is provisional.</strong>
+          Renderings are folded by filename, and the filenames do not always cooperate:
+          the <span class="sa-cap">कथासरित्सागर</span>, for example, appears once as a TEI work
+          and again as a legacy-only "plain text version"
+          whose filename does not match the one its TEI file names.
+          The legacy-only count is therefore somewhat high.
+          The alternative under study is the main page's own entry,
+          of which there are <span data-stat="anchors_on_main_page"></span>.
+        </p>
+
+        <h3 id="calculating-size">Calculating Size</h3>
+        <p>
+          GRETIL's Sanskrit is IAST throughout, so no transliteration is needed.
+          Size is simply the body of each text:
+          for a legacy file, everything after the header, banner and character table;
+          for a TEI work, everything after the header block of its plaintext transformation.
+          A TEI work is measured from that transformation,
+          and a legacy-only work from its largest rendering.
+        </p>
+        <p>
+          The <span data-stat="tei_count"></span> TEI works come to
+          <span data-stat="tei_bytes" data-unit="mb"></span>&nbsp;MB
+          and the legacy-only works to
+          <span data-stat="legacy_only_bytes" data-unit="mb"></span>&nbsp;MB,
+          for <strong><span data-stat="transliterated_bytes" data-unit="mb"></span>&nbsp;MB</strong> in all.
+          The median work is about <span data-stat="median_bytes" data-unit="kb"></span>&nbsp;KB,
+          and the <span data-stat="half_bytes_works"></span> largest carry half the total.
+        </p>
+
+        <h3 id="calculating-dates">Calculating Dates</h3>
+        <p>
+          GRETIL published its own record of what it added and when,
+          so dates here are <strong>measured rather than inferred</strong>.
+          Each update on the history page links the main-page entries of the texts it announces,
+          and each entry links its files;
+          following those links dates a work by the first update that added it.
+          Mentions marked only "revised" or "converted" are not counted as additions.
+        </p>
+        <p>
+          The method reaches <span data-stat="dated_works"></span> of the
+          <span data-stat="count"></span> works.
+          It does well on the TEI layer
+          (<span data-stat="dated_tei"></span> of <span data-stat="tei_count"></span>,
+          <span data-stat="dated_tei_pct"></span>%)
+          and poorly on legacy-only works
+          (<span data-stat="dated_legacy"></span> of <span data-stat="legacy_only_count"></span>),
+          because the main page mostly links TEI files.
+          The remaining <span data-stat="undated_works"></span> works carry no date
+          rather than a guessed one.
+        </p>
+
+        <h3 id="browsing-categories-and-authors">Browsing by Categories and Authors</h3>
+        <p>
+          The default view is GRETIL's own category tree.
+          A TEI work takes the category of the legacy file it was converted from;
+          the <span data-stat="tei_without_legacy"></span> TEI files that name no legacy file
+          are gathered under "TEI without a legacy source."
+          Within a category, works can optionally also be grouped by author.
+        </p>
+        <p>
+          Alternatively, the tree can be inverted so that authors are primary and categories secondary.
+          No normalization is performed on author names,
+          so a name spelled with diacritics in a TEI header and without them in a legacy title
+          appears twice (see <a href="#data-quality">Data Quality</a> below).
+        </p>
+        <p>
+          Each work carries a tag link for every file it has:
+          "xml" and "txt" for a TEI file and its plaintext transformation,
+          and the legacy file under the name of its rendering
+          ("analytic," "plain," "index," or simply "htm").
+          A "TEI" or "legacy only" tag says which layer the work was counted from.
+        </p>
+      </details>
+
+      <details class="block collapsible">
+        <summary><h2 id="data-quality">Data Quality: Structural Errors</h2></summary>
+
+        <h3 id="opportunities-for-correction">Opportunities for Correction</h3>
+        <p>
+          GRETIL is closed, so nothing below can be fixed at the source;
+          these are things for a user of the collection, or a maintainer of one of its mirrors, to know.
+          The lists are computed in this page from the Atlas's published data.
+        </p>
+        <!-- Filled by renderAudit() in about.js from data/tree.json. -->
+        <ul id="auditList" style="list-style: none; padding-left: 0;">
+          <li>Loading…</li>
+        </ul>
+      </details>
+
+      <details class="block collapsible">
+        <summary><h2 id="data-quantity">Data Quantity: Historical Trends</h2></summary>
+
+        <div id="growthControls" class="gb-controls">
+        <span class="gb-group"><span class="gb-ctl-label">measure</span>
+          <span class="gb-seg"><button type="button" data-axis="metric" data-value="count">work count</button><button
+                type="button" data-axis="metric" data-value="size">text size</button></span></span>
+        <span class="gb-group"><span class="gb-ctl-label">period</span>
+          <span class="gb-seg"><button type="button" data-axis="granularity" data-value="1">month</button><button
+                type="button" data-axis="granularity" data-value="3">quarter</button><button
+                type="button" data-axis="granularity" data-value="12">year</button></span></span>
+        <span class="gb-group"><span class="gb-ctl-label">totals</span>
+          <span class="gb-seg"><button type="button" data-axis="mode" data-value="cumulative">cumulative</button><button
+                type="button" data-axis="mode" data-value="added">period</button></span></span>
+        </div>
+
+        <div id="growthChart">Loading…</div>
+
+        <p>
+          See <a href="#calculating-dates">Calculating Dates</a> above for the method.
+        </p>
+        <p style="margin-top:12px;">
+          The chart shows only the works that could be dated:
+          <strong><span data-stat="dated_works"></span> of <span data-stat="count"></span></strong>,
+          carrying <span data-stat="dated_bytes" data-unit="mb"></span> of
+          <span data-stat="transliterated_bytes" data-unit="mb"></span>&nbsp;MB
+          (<span data-stat="dated_bytes_pct"></span>%).
+          It runs from <span data-stat="changelog_first"></span> to <span data-stat="changelog_last"></span>
+          and stops short of the collection's present total;
+          the gap is the <span data-stat="undated_works"></span> undated works,
+          not growth that happened later.
+        </p>
+        <p>
+          Because nearly all the dated works are ones later converted to TEI,
+          this is in effect the growth curve of the texts GRETIL went on to curate.
+          The legacy-only remainder, which includes both epics and much of the Veda,
+          is missing from every bar.
+        </p>
+        <p>
+          A date is when a text was first announced, and sizes are those of the files as they stand today.
+          A text added small in 2003 and since revised or extended appears in 2003 at its present size.
+        </p>
+      </details>
+    </section>
   </main>
 
+  <script type="module">
+    const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    /* "2020-09-10" -> "Sep 2020", matching how Sāgarasaṅgama rounds the same
+       figure. Read off the string rather than parsed with `new Date()`: an ISO
+       date parses as UTC midnight, which is the previous day locally and can
+       print the wrong month. */
+    function monthYear(iso) {
+      const m = /^(\d{4})-(\d{2})/.exec(iso || "");
+      if (!m) return "";
+      const month = MONTHS[Number(m[2]) - 1];
+      return month ? `${month} ${m[1]}` : "";
+    }
+
+    async function loadVersion() {
+      try {
+        const r = await fetch("./VERSION");
+        if (!r.ok) return;
+        const text = await r.text();
+        for (const line of text.split("\n")) {
+          if (!line.includes("=")) continue;
+          const eqIdx = line.indexOf("=");
+          const key = line.slice(0, eqIdx).trim();
+          const value = line.slice(eqIdx + 1).trim().replace(/^['"]|['"]$/g, "");
+          if (key === "__code_version__") {
+            const el = document.getElementById("appVersion");
+            if (el) el.textContent = `v${value}`;
+          } else if (key === "__data_version__") {
+            const el = document.getElementById("pipelineRun");
+            if (el) el.textContent = `data pipeline last run: ${value}`;
+          } else if (key === "__content_version__") {
+            /* Not "last sourced" as in the siblings: this Atlas's content
+               version is the date of GRETIL's final update, not of a fetch. */
+            const el = document.getElementById("contentDate");
+            if (el) el.textContent = `collection last updated: ${monthYear(value)}`;
+          }
+        }
+      } catch (e) {
+        console.log("Could not load version:", e);
+      }
+    }
+
+    loadVersion();
+  </script>
+  <script type="module">
+    import { initStaticTranslit } from "./translit-static.js";
+    import { initAnchorDetails } from "./anchor-details.js";
+    import { initTopbarHeight } from "./topbar-height.js";
+    initTopbarHeight();
+    initStaticTranslit("iast");
+    initAnchorDetails();
+  </script>
   <script type="module" src="./about.js"></script>
 </body>
 </html>

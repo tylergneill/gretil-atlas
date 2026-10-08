@@ -24,6 +24,11 @@ Branch: `v0`.
       place, so the two cannot disagree. Add it beside
       `last_changed` in `build_tree.py`, from `SCRAPE_DATE`.
 - [ ] Rebuild the tree; commit `tree.json` and `docs/VERSION` together.
+      **`make build` then `make changelog`, always both:** `build_changelog`
+      is what writes each work's `added` date into `tree.json`, so a build on
+      its own publishes a tree with no dates. If `data/` is absent, run
+      `make inventory` and `make count-sizes` first; all four take seconds
+      and nothing touches the network.
 - [ ] `docs/VERSION` was edited by hand to 2025-11-30; the rebuild should
       write the same line. If the scrape actually ran on another day, change
       `SCRAPE_DATE`.

@@ -85,6 +85,11 @@ No network anywhere in this plan. Sources are read-only checkouts under
 
 - [ ] The format-letter heuristic in `inventory.py` is unchecked: confirm the
       set `{_,a,p,i,x,s,t,v}` and the digit parts against the main page.
+      Seen in the first build (Dharmaśāstra › Smṛti): `Katyayana-Smrti`,
+      `Katyayana-Smrti (pada index)` and `Katyayanasmrti`, and `Manu-Smrti`
+      beside `Manu-Smrti (analytic version)`, are renderings of one text under
+      stems the heuristic does not relate. The legacy `<title>` (which names
+      the rendering in parentheses) is a better fold key than the filename.
 - [ ] 51 TEI files carry no legacy `<ref>`; classify them (born-TEI vs. lost
       ref) and give the born-TEI ones a category.
 - [ ] `tei_coverage_report.md` in the mirror repo quotes 19.4%; the honest

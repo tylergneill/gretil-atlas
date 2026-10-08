@@ -18,7 +18,8 @@ this against the main page's own entries; until then:
     added         not here -- `build_changelog` dates works from hist.html
 
 `all_stats` is `shape.summarize` plus `tei_count`, `legacy_only_count`,
-`legacy_file_count` and `last_changed` (GRETIL's final update, 2020-09-10).
+`legacy_file_count`, `last_changed` (GRETIL's final update, 2020-09-10) and
+`sourced` (the scrape's date, the same one docs/VERSION carries).
 
     make build
 """
@@ -40,6 +41,20 @@ LAST_UPDATE = "2020-09-10"   # Update #498, the last entry in hist.html
 # `__content_version__` means in every Atlas ("data last sourced"); the
 # collection's own last change is `all_stats.last_changed`, above.
 SCRAPE_DATE = "2025-11-30"
+
+
+def stamp_version(stats: dict) -> None:
+    """docs/VERSION and `all_stats.sourced`, both from SCRAPE_DATE.
+
+    The tree carries the date beside the figures it dates, which is where
+    Sāgarasaṅgama reads it (its CONTRACT.md); one constant, one function, so
+    the home card's "as of" and the About page's "data last sourced" cannot
+    disagree. Call it before the tree is written.
+    """
+    stats["sourced"] = SCRAPE_DATE
+    (DOCS_DIR / "VERSION").write_text(
+        f'__code_version__ = "0.1.0"\n__data_version__ = "{date.today().isoformat()}"\n'
+        f'__content_version__ = "{SCRAPE_DATE}"\n', encoding="utf-8")
 
 # Directory code -> the name the site's own outline uses. Unknown codes pass
 # through so a new directory shows up rather than vanishing.
@@ -147,14 +162,13 @@ def main() -> None:
         "last_changed": LAST_UPDATE,
     }
     tree = build_axes(works, "scrape", extra)
+    stamp_version(tree["all_stats"])
     write(tree, args.out)
     report(tree, args.out)
     print(f"  TEI works {extra['tei_count']}, legacy-only works {extra['legacy_only_count']} "
           f"(from {len(legacy) - sum(len(v) for v in by_key.values())} covered + "
           f"{sum(len(v) for v in by_key.values())} uncovered legacy files)")
-    version = DOCS_DIR / "VERSION"
-    version.write_text(f'__code_version__ = "0.1.0"\n__data_version__ = "{date.today().isoformat()}"\n'
-                       f'__content_version__ = "{SCRAPE_DATE}"\n', encoding="utf-8")
+    print(f"  content version: {SCRAPE_DATE} (the scrape; also all_stats.sourced)")
 
 
 if __name__ == "__main__":

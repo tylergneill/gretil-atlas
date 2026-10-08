@@ -7,7 +7,8 @@ in Indian Languages, one of the `sagara-sangama` atlases. A `pipeline/` emits
 This repo **hosts no text of its own.** It indexes metadata and structure and
 links out to GRETIL's copies.
 
-**Seeded 2026-10-07 from existing research; one stage exists.** Read
+**Seeded 2026-10-07 from existing research; two stages exist** (`inventory`,
+`count-sizes`), both offline and both in seconds. Read
 `notes/site-structure.md` before touching the data — GRETIL is four layers and
 three official versions that disagree, and most mistakes come from counting
 the wrong one. `notes/scratch/todo.md` is the backlog.
@@ -104,6 +105,6 @@ the mass conversion.
 ## Where things land
 
     data/inventory.jsonl      one row per file in every layer (make inventory)
-    data/sizes.jsonl          body bytes per text (not yet)
+    data/sizes.jsonl          body bytes per Sanskrit legacy HTM and TEI plaintext (make count-sizes)
     docs/data/tree.json       the published tree (not yet)
     docs/data/changelog.json  the growth series from hist.html (not yet)

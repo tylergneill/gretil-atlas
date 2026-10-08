@@ -32,11 +32,19 @@ No network anywhere in this plan. Sources are read-only checkouts under
       `<li>` with anchor id, title, "input by", category path (from the h2/h3/h4
       outline), and the files it links. Then reconcile against the inventory
       both ways.
-- [ ] `count-sizes` — body bytes per text. Legacy: strip the header before the
-      first `<hr>`, the IAST table, and markup. TEI: the plaintext
-      transformation is already the body, or derive from the XML. IAST
-      throughout, so `transliterated_bytes` is the body size; report
-      `content_bytes` equal to it and say why.
+- [x] `count-sizes` — body bytes per file, both layers (2026-10-07). Legacy:
+      everything after the second `<hr>` (uniform across all 1,326), de-tagged.
+      TEI: everything after the `# Text` line of the plaintext transformation.
+      Sanskrit legacy bodies 299 MB IAST, TEI bodies 188 MB; on the 745 texts
+      measured both ways TEI is 10% larger than legacy (the transformation
+      adds structure labels and verse ids — check before publishing either as
+      "the" size); legacy-only texts 143 MB. Zero Devanāgarī characters in
+      either layer, so IAST-in-IAST-out holds.
+- [ ] **Which layer's bytes publish.** A text present in both layers has two
+      sizes 10% apart; the legacy layer also counts a work's analytic, plain
+      and index renderings separately, so its 299 MB overstates work-level
+      size. Candidate rule: TEI body where a TEI exists, else the legacy body
+      of one rendering per work key. Decide with phase 0.
 - [ ] `build` — → `docs/data/tree.json` in the sibling shape, two branches:
       the categorical tree (from the main page's outline) and a flat TEI
       branch flagged per text as `tei` / `legacy-only`; `all_stats` with

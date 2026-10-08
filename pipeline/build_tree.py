@@ -34,6 +34,13 @@ from pipeline.shape import build_axes, report, write
 
 LAST_UPDATE = "2020-09-10"   # Update #498, the last entry in hist.html
 
+# When our copy was taken: the day the scrape of the live site was committed to
+# the mirror repo. A constant because nothing here fetches -- there is no
+# journal to read it from, as the sibling Atlases do. This is what
+# `__content_version__` means in every Atlas ("data last sourced"); the
+# collection's own last change is `all_stats.last_changed`, above.
+SCRAPE_DATE = "2025-11-30"
+
 # Directory code -> the name the site's own outline uses. Unknown codes pass
 # through so a new directory shows up rather than vanishing.
 NAMES = {
@@ -147,7 +154,7 @@ def main() -> None:
           f"{sum(len(v) for v in by_key.values())} uncovered legacy files)")
     version = DOCS_DIR / "VERSION"
     version.write_text(f'__code_version__ = "0.1.0"\n__data_version__ = "{date.today().isoformat()}"\n'
-                       f'__content_version__ = "{LAST_UPDATE}"\n', encoding="utf-8")
+                       f'__content_version__ = "{SCRAPE_DATE}"\n', encoding="utf-8")
 
 
 if __name__ == "__main__":

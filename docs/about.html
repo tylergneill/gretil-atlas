@@ -362,7 +362,7 @@
     const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-    /* "2020-09-10" -> "Sep 2020", matching how Sāgarasaṅgama rounds the same
+    /* "2025-11-30" -> "Nov 2025", matching how Sāgarasaṅgama rounds the same
        figure. Read off the string rather than parsed with `new Date()`: an ISO
        date parses as UTC midnight, which is the previous day locally and can
        print the wrong month. */
@@ -390,10 +390,10 @@
             const el = document.getElementById("pipelineRun");
             if (el) el.textContent = `data pipeline last run: ${value}`;
           } else if (key === "__content_version__") {
-            /* Not "last sourced" as in the siblings: this Atlas's content
-               version is the date of GRETIL's final update, not of a fetch. */
+            /* The date of the scrape, not of GRETIL's final update (which
+               is 2020 and is said in the paragraph above). */
             const el = document.getElementById("contentDate");
-            if (el) el.textContent = `collection last updated: ${monthYear(value)}`;
+            if (el) el.textContent = `data last sourced: ${monthYear(value)}`;
           }
         }
       } catch (e) {

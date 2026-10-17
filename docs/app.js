@@ -537,11 +537,12 @@ function renderWorkLi(work) {
 
   const badges = el("span", { class: "small", style: "margin-left:8px;" });
   for (const f of work.files || []) {
-    const label = fileLabel(f);
+    const kind = (work.file_kinds || {})[f];
+    const label = fileLabel(f, kind);
     if (!label) continue;
     badges.appendChild(el("a", {
       href: `${MIRROR_ROOT}/${f}`, target: "_blank", rel: "noopener",
-      class: "badge badgeLink", title: fileTitle(f),
+      class: "badge badgeLink", title: fileTitle(f, kind),
     }, label));
   }
   if (work.tei) {
@@ -549,7 +550,8 @@ function renderWorkLi(work) {
   } else {
     badges.appendChild(el("span", {
       class: "badge badgeWarn",
-      title: `Legacy HTML only — no TEI conversion exists. ${(work.renderings || []).length} rendering(s): ${(work.renderings || []).join(", ")}`,
+      title: `Legacy HTML only — never converted to TEI.${work.parts > 1 ? ` In ${work.parts} parts.` : ""}` +
+        (work.on_main_page ? "" : " Not linked from GRETIL's main page."),
     }, "legacy only"));
   }
   if (FULLTEXT_MODE && work.has_text) {
@@ -566,23 +568,29 @@ function renderWorkLi(work) {
 const MIRROR_ROOT = "https://tylergneill.github.io/gretil-mirror/gretil";
 const SITE_ROOT = "https://tylergneill.github.io/gretil-mirror";
 
-function fileLabel(path) {
+// A legacy file's kind comes from the tree (pipeline/classify_legacy.py), not
+// from the letter before `u` in its name, which is not a reliable code.
+const LEGACY_KIND_LABEL = { main: "htm", version: "version", index: "index" };
+const LEGACY_KIND_TITLE = {
+  main: "Legacy GRETIL HTML file",
+  version: "Legacy GRETIL HTML file: another layout of this text (pada markers, plain, pausa, an earlier revision …)",
+  index: "Legacy GRETIL HTML file: a pada or verse index to this text",
+};
+
+function fileLabel(path, kind) {
   if (path.endsWith(".xml")) return "xml";
   if (path.includes("/plaintext/")) return "txt";
   if (path.includes("/transformations/html/")) return "html";
-  if (path.endsWith(".htm")) {
-    const m = /([a-z_])u\.htm$/i.exec(path);
-    const fmt = m ? m[1] : "";
-    return { a: "analytic", p: "plain", i: "index", x: "x", s: "s", t: "t", v: "v" }[fmt] || "htm";
-  }
+  if (path.endsWith(".htm")) return LEGACY_KIND_LABEL[kind] || "htm";
   return null;
 }
 
-function fileTitle(path) {
+function fileTitle(path, kind) {
   if (path.endsWith(".xml")) return "TEI-conformant XML";
   if (path.includes("/plaintext/")) return "Plain transformation of the TEI (txt)";
   if (path.includes("/transformations/html/")) return "Analytic transformation of the TEI (html)";
-  return "Legacy GRETIL HTML file";
+  const name = path.split("/").pop();
+  return `${LEGACY_KIND_TITLE[kind] || LEGACY_KIND_TITLE.main} — ${name}`;
 }
 
 function primaryUrl(work) {

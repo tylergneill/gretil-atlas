@@ -43,8 +43,8 @@ const CHANGELOG_URL = "./data/changelog.json";
 // Where a work's files are served from -- the same root app.js links to.
 const MIRROR_ROOT = "https://tylergneill.github.io/gretil-mirror/gretil";
 
-// The one domain the Atlas invents: TEI files whose header names no legacy
-// file, and which therefore have no directory to take a category from.
+// The one domain the Atlas invents: TEI files born in TEI, which have no
+// legacy file to take a category from. Matches pipeline/build_tree.py.
 const NO_LEGACY_DOMAIN = "TEI without a legacy source";
 
 // ---------------------------------------------------------------------------
@@ -66,7 +66,7 @@ function fillStats(stats) {
 
 const bytesOf = (w) => (w.sizes || {}).transliterated_bytes || 0;
 const pct = (n, d) => (d ? (n / d * 100).toFixed(0) : null);
-const hasLegacyFile = (w) => (w.files || []).some((f) => f.startsWith("1_sanskr/"));
+const bornTei = (w) => w.tei && w.domain === NO_LEGACY_DOMAIN;
 
 // "Kṣemendra" and "Ksemendra" fold to the same key: decompose, drop the
 // combining marks, lowercase. Used only to *find* names the two layers spell
@@ -94,12 +94,13 @@ function deriveStats(tree, log) {
   const legacy = works.filter((w) => !w.tei);
   const sum = (ws) => ws.reduce((s, w) => s + bytesOf(w), 0);
 
-  stats.tei_with_legacy = tei.filter(hasLegacyFile).length;
-  stats.tei_without_legacy = tei.length - stats.tei_with_legacy;
+  // Text and file counts are the pipeline's (all_stats); these only add the
+  // ones a sentence needs that the tree does not carry ready-made.
+  stats.legacy_secondary_files = (stats.legacy_version_files || 0) + (stats.legacy_index_files || 0);
+  stats.legacy_only_off_main_page = legacy.filter((w) => !w.on_main_page).length;
+  stats.legacy_only_multipart = legacy.filter((w) => (w.parts || 0) > 1).length;
   stats.tei_bytes = sum(tei);
   stats.legacy_only_bytes = sum(legacy);
-  stats.legacy_only_files = legacy.reduce((s, w) => s + (w.files || []).length, 0);
-  stats.legacy_multi_rendering = legacy.filter((w) => (w.renderings || []).length > 1).length;
 
   const gretilDomains = new Set(works.map((w) => w.domain).filter((d) => d !== NO_LEGACY_DOMAIN));
   stats.categories = gretilDomains.size;
@@ -206,35 +207,34 @@ function renderAudit(tree) {
   list.append(auditItem(
     `Authors spelled two ways across the two layers (${variants.length} names)`,
     "A legacy file's <title> is plain ASCII; the TEI header carries diacritics. " +
-    "Where an author has works in both layers the two spellings never meet, so the " +
-    "author axis lists the same person twice. Works under each spelling in parentheses.",
+    "Where an author has texts in both layers the two spellings never meet, so the " +
+    "author axis lists the same person twice. Texts under each spelling in parentheses.",
     variants.map((sp) => sp.map(([name, n]) => `${name} (${n})`).join(" · "))));
 
-  const orphans = works.filter((w) => w.tei && !hasLegacyFile(w))
-    .sort((a, b) => a.title.localeCompare(b.title));
+  const born = works.filter(bornTei).sort((a, b) => a.title.localeCompare(b.title));
   list.append(auditItem(
-    `TEI files that name no legacy source (${orphans.length} files)`,
-    "Every other TEI header points at the legacy file it was converted from, which is " +
-    "also where the Atlas reads a category. These carry no such reference, whether " +
-    "because they were born in TEI or because the reference was lost, and so sit " +
-    `outside GRETIL's categories under "${NO_LEGACY_DOMAIN}".`,
-    orphans.map((w) => h("span", {}, workLink(w), " — ", h("code", {}, w.id)))));
+    `Texts born in TEI (${born.length} texts)`,
+    "Added to GRETIL directly as TEI, with no legacy HTML file and so no folder to take a " +
+    "category from; they sit outside GRETIL's categories under " +
+    `"${NO_LEGACY_DOMAIN}". None of their headers credits a conversion to the legacy formats.`,
+    born.map((w) => h("span", {}, workLink(w), " — ", h("code", {}, w.id)))));
 
   const legacy = works.filter((w) => !w.tei);
   const legacyGroups = byDomain(legacy).map(([domain, ws]) => {
     const inner = h("ul", { style: "margin-left: 1.6em;" });
     for (const w of ws.sort((a, b) => a.title.localeCompare(b.title))) {
-      const n = (w.renderings || []).length;
+      const notes = [w.parts > 1 ? `${w.parts} parts` : "", w.on_main_page ? "" : "not on the main page"]
+        .filter(Boolean).join(", ");
       inner.append(h("li", {}, workLink(w),
-        w.author ? ` — ${w.author}` : "", n > 1 ? ` (${n} renderings)` : ""));
+        w.author ? ` — ${w.author}` : "", notes ? ` (${notes})` : ""));
     }
     return h("li", { class: "audit-item" }, h("details", {},
       h("summary", { class: "audit-summary" }, h("span", {}, `${domain} (${ws.length})`)), inner));
   });
   const legacyItem = auditItem(
     `Texts never converted to TEI (${legacy.length} texts)`,
-    "Present in the legacy HTML tree only. Their titles and authors are whatever the " +
-    "file's <title> says, without diacritics.",
+    "Present in the legacy HTML tree only. A text in several files is listed once. " +
+    "Single-file titles and authors are whatever the file's <title> says, without diacritics.",
     legacyGroups);
   legacyItem.querySelector("ul").style.cssText = "margin-left: 1.6em; list-style: none; padding-left: 0;";
   list.append(legacyItem);
@@ -242,9 +242,9 @@ function renderAudit(tree) {
   const undated = works.filter((w) => !w.added);
   const total = new Map(byDomain(works).map(([d, ws]) => [d, ws.length]));
   list.append(auditItem(
-    `Works the update history never names (${undated.length} works)`,
+    `Texts the update history never names (${undated.length} texts)`,
     "GRETIL's history page announces additions by linking the main page's entry for a " +
-    "text. A work lands here when no update links an entry that leads to its files.",
+    "text. A text lands here when no update links an entry that leads to its files.",
     byDomain(undated).map(([domain, ws]) =>
       `${domain} — ${nf.format(ws.length)} of ${nf.format(total.get(domain))}`)));
 }
@@ -262,7 +262,7 @@ function renderAudit(tree) {
 // text, so there is no format mix to show.
 
 const BANDS = [
-  { key: "text", label: "works", cls: "gb-text" },
+  { key: "text", label: "texts", cls: "gb-text" },
 ];
 
 // `granularity` is months per group: 1 monthly, 3 quarterly, 12 yearly. Year
@@ -436,7 +436,7 @@ function drawGrowth(series, chartEl) {
     if (showTick) lbl.textContent = p.period;
     col.appendChild(lbl);
 
-    const unit = growthState.metric === "size" ? "" : " works";
+    const unit = growthState.metric === "size" ? "" : " texts";
     col.title = `${p.period} — ${growthState.mode === "cumulative" ? "total" : "added"}: ` +
       `${fmtValue(totalOf(p))}${unit}`;
     chart.appendChild(col);

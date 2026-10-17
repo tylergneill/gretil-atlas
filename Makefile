@@ -1,4 +1,4 @@
-.PHONY: inventory inventory-zip count-sizes extract-text build changelog serve serve-fulltext
+.PHONY: inventory inventory-zip count-sizes extract-text classify build changelog serve serve-fulltext
 
 # ============================================================================
 # Everything here is OFFLINE. GRETIL is closed and every copy is on disk under
@@ -28,7 +28,13 @@ count-sizes:
 extract-text:
 	python -m pipeline.extract_text $(ARGS)
 
-# inventory + sizes -> docs/data/tree.json (and docs/VERSION).
+# Every Sanskrit legacy file -> the text it belongs to, as main file, version
+# or index -> data/legacy_texts.jsonl, with the text counts. Under a minute.
+# Content tests plus the hand decisions in the module. Needs `make inventory`.
+classify:
+	python -m pipeline.classify_legacy $(ARGS)
+
+# inventory + sizes + legacy_texts -> docs/data/tree.json (and docs/VERSION).
 build:
 	python -m pipeline.build_tree $(ARGS)
 

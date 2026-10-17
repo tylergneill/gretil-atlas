@@ -61,28 +61,24 @@ def load_text_index(root: Path) -> dict[str, Path]:
     was written to, and those names embed a transliterated title that nothing
     downstream can reconstruct. Later lines win, matching `load_progress`.
     """
-    # Keyed by the work id the tree uses: a TEI stem (`data/text_extract/tei/
-    # <stem>.txt`) or `legacy:<work_key>`, which resolves to the largest
-    # legacy rendering of that key. A prebuilt map, so no request string ever
-    # reaches the filesystem.
+    # Keyed by the text id the tree uses: a TEI stem (`data/text_extract/tei/
+    # <stem>.txt`) or `legacy:<id>`, which resolves to the text's first main
+    # file as data/legacy_texts.jsonl (make classify) assigns it. A prebuilt
+    # map, so no request string ever reaches the filesystem.
     index: dict[str, Path] = {}
     base = root / "data" / "text_extract"
     for path in (base / "tei").glob("*.txt") if (base / "tei").is_dir() else []:
         index[path.stem] = path
-    legacy = base / "legacy"
-    if legacy.is_dir():
-        best: dict[str, tuple[int, Path]] = {}
-        for path in legacy.rglob("*.txt"):
-            stem = path.stem
-            key = stem[:-1] if stem.endswith("u") else stem
-            if key and key[-1] in "_apixstv":
-                key = key[:-1]
-            key = key.rstrip("_") or stem
-            size = path.stat().st_size
-            if key not in best or size > best[key][0]:
-                best[key] = (size, path)
-        for key, (_, path) in best.items():
-            index[f"legacy:{key}"] = path
+    assigned = root / "data" / "legacy_texts.jsonl"
+    if assigned.exists():
+        for line in sorted(assigned.read_text(encoding="utf-8").splitlines()):
+            row = json.loads(line)
+            if not (row["text"] or "").startswith("legacy:") or row["kind"] != "main":
+                continue
+            rel = Path(row["path"]).relative_to("1_sanskr").with_suffix(".txt")
+            path = base / "legacy" / rel
+            if path.exists():
+                index.setdefault(row["text"], path)
     return index
 
 

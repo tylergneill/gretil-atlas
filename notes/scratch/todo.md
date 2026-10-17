@@ -8,18 +8,10 @@ No network anywhere in this plan. Sources are read-only checkouts under
 
 ## Phase 0 — decide the unit
 
-- [ ] **What is a text?** Decided provisionally 2026-10-07, leaning TEI as
-      Tyler prefers (the TEI layer was itself a selection; "work" is too
-      coarse because editions must stay distinct): **one work per TEI file,
-      plus one per legacy-only text** with its renderings folded — 782 + 341
-      = 1,123, what `build_tree` publishes. Still to compare against option
-      4, the main page's own entries: 1,099 `<li>` anchors, of which 769 link
-      a TEI file, 330 link none (TITUS/Sansknet-only or external), and few
-      link legacy HTM directly. The join through those anchors dated 707 of
-      the 1,123 works; the 416 undated are mostly legacy-only (all Mahābhārata
-      parvans) plus TEI files whose anchor names no file. Measure the overlap
-      both ways and decide whether the main-page entry should replace or
-      merely annotate the TEI unit.
+- [x] **What is a text?** Decided 2026-10-17: a text, one per digitization;
+      812 = 763 converted + 19 born TEI + 30 legacy-only, by `make classify`.
+      See CLAUDE.md and the `classify_legacy` docstring. The main page's
+      1,099 entries stay an annotation (`on_main_page`), not the unit.
 - [ ] **Sanskrit first, and what "Sanskrit" means.** `1_sanskr/` plus `sa_`
       TEI; decide whether `7_fromindonesia` and the Prakrit-in-Sanskrit
       commentaries count. Other languages stay inventoried, not counted.
@@ -83,15 +75,10 @@ No network anywhere in this plan. Sources are read-only checkouts under
 
 ## Loose ends from seeding
 
-- [ ] The format-letter heuristic in `inventory.py` is unchecked: confirm the
-      set `{_,a,p,i,x,s,t,v}` and the digit parts against the main page.
-      Seen in the first build (Dharmaśāstra › Smṛti): `Katyayana-Smrti`,
-      `Katyayana-Smrti (pada index)` and `Katyayanasmrti`, and `Manu-Smrti`
-      beside `Manu-Smrti (analytic version)`, are renderings of one text under
-      stems the heuristic does not relate. The legacy `<title>` (which names
-      the rendering in parentheses) is a better fold key than the filename.
-- [ ] 51 TEI files carry no legacy `<ref>`; classify them (born-TEI vs. lost
-      ref) and give the born-TEI ones a category.
+- [x] The format-letter heuristic: not a reliable code; superseded by
+      `make classify` (2026-10-17).
+- [ ] The 19 born-TEI texts have no category; take one from their main-page
+      outline position (needs `parse-main-page`).
 - [ ] `tei_coverage_report.md` in the mirror repo quotes 19.4%; the honest
       Sanskrit figure is ~55%. Fix or retire the report there once the Atlas
       publishes the real number.

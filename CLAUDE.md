@@ -76,17 +76,22 @@ sections are inventoried but not counted as texts.
 
 ## What a "text" is here
 
-Undecided, and the first item in the todo. The candidates:
+**A text, not a work** (decided 2026-10-17). Files from one digitization —
+the same input of the same edition — are one text, however split, laid out or
+revised; a different digitization or edition is a different text. Grouping
+texts into works is Seti's business. `make classify`
+(`pipeline/classify_legacy.py`) assigns every Sanskrit legacy file to its
+text as `main` (the text or one part of it), `version` (another layout: pada
+markers, plain, pausa, an earlier revision, an excerpt) or `index`; its
+docstring has the rules and the table of hand decisions. Result: 812 texts =
+763 converted + 19 born TEI + 30 legacy-only; 1,326 legacy files = 1,041
+main + 188 version + 97 index.
 
-- a **legacy HTM** file (1,326 Sanskrit, excluding the SAS Mahābhārata
-  prototype and the CSX/REE encodings) — the site's own unit, but it counts a
-  work's analytic, plain and index renderings separately (`utajp_au`,
-  `utajp_pu`, `utajp_iu` are one text);
-- a **work stem**, those renderings folded (≈1,087 by the filename heuristic
-  `inventory.py` applies; the heuristic is stated there and is not yet
-  trusted);
-- a **TEI file** (784, of which 733 name the legacy file they came from) — the
-  curated unit, but GRETIL itself says it covers only part of the collection.
+Two things that bite: the TEI `<ref>` names only part 1 of a multi-part
+source, and the letter before `u` in a legacy filename is not a reliable
+layout code (`ram_03_u` is Smith's text, `ram_03au`/`pu` Hellwig's). The
+`work_key` in `inventory.py` is a filename key for grouping candidates, not
+a unit.
 
 The sibling convention is `text_count` = items with searchable text, which
 here is every one of them: GRETIL is plaintext IAST by construction, so
@@ -106,5 +111,6 @@ the mass conversion.
 
     data/inventory.jsonl      one row per file in every layer (make inventory)
     data/sizes.jsonl          body bytes per Sanskrit legacy HTM and TEI plaintext (make count-sizes)
-    docs/data/tree.json       the published tree (not yet)
-    docs/data/changelog.json  the growth series from hist.html (not yet)
+    data/legacy_texts.jsonl   each Sanskrit legacy file -> its text and kind (make classify)
+    docs/data/tree.json       the published tree, one entry per text (make build)
+    docs/data/changelog.json  the growth series from hist.html (make changelog)

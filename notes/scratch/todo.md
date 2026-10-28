@@ -82,3 +82,9 @@ No network anywhere in this plan. Sources are read-only checkouts under
 - [ ] `tei_coverage_report.md` in the mirror repo quotes 19.4%; the honest
       Sanskrit figure is ~55%. Fix or retire the report there once the Atlas
       publishes the real number.
+
+## Found while writing the ISCLS 9 paper
+
+- [ ] **Growth curve starts too low.** The 109 undated texts (~49 MB) are
+      missing from every bar, and some, like the Mahābhārata, were online before
+      the update log began on 2001-11-21. See `scratch/undated-starting-stock.md`.

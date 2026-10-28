@@ -10,3 +10,4 @@ Nothing is kept because it was expensive to write.
 | File | Status |
 | --- | --- |
 | `todo.md` | live — the backlog spine. |
+| `undated-starting-stock.md` | open — growth curve misses the 109 undated texts. |
